@@ -1,0 +1,2010 @@
+using System;
+using System.Linq;
+
+namespace Devlead.Statiq.Tabs
+{
+    internal static class MarkdownLanguages
+    {
+        public static ILookup<string, string> LanguageLookup { get; } = new (string extension, string language)[]
+        {
+// M4Sugar
+            (".m4", "text"),
+// YAML
+            (".yml", "yaml"),
+            (".mir", "yaml"),
+            (".reek", "yaml"),
+            (".rviz", "yaml"),
+            (".sublime-syntax", "yaml"),
+            (".syntax", "yaml"),
+            (".yaml", "yaml"),
+            (".yaml-tmlanguage", "yaml"),
+            (".yaml.sed", "yaml"),
+            (".yml.mysql", "yaml"),
+// Apollo Guidance Computer
+            (".agc", "assembly_x86"),
+// Red
+            (".red", "text"),
+            (".reds", "text"),
+// NCL
+            (".ncl", "text"),
+// CSV
+            (".csv", "text"),
+// LookML
+            (".lookml", "yaml"),
+            (".model.lkml", "yaml"),
+            (".view.lkml", "yaml"),
+// KiCad Schematic
+            (".sch", "text"),
+// NPM Config
+            ("", "text"),
+// SmPL
+            (".cocci", "text"),
+// OCaml
+            (".ml", "ocaml"),
+            (".eliom", "ocaml"),
+            (".eliomi", "ocaml"),
+            (".ml4", "ocaml"),
+            (".mli", "ocaml"),
+            (".mll", "ocaml"),
+            (".mly", "ocaml"),
+// Zimpl
+            (".zimpl", "text"),
+            (".zmpl", "text"),
+            (".zpl", "text"),
+// Dockerfile
+            (".dockerfile", "dockerfile"),
+// Pickle
+            (".pkl", "text"),
+// UrWeb
+            (".ur", "text"),
+            (".urs", "text"),
+// Common Lisp
+            (".lisp", "lisp"),
+            (".asd", "lisp"),
+            (".cl", "lisp"),
+            (".l", "lisp"),
+            (".lsp", "lisp"),
+            (".ny", "lisp"),
+            (".podsl", "lisp"),
+            (".sexp", "lisp"),
+// NetLogo
+            (".nlogo", "lisp"),
+// Literate Agda
+            (".lagda", "text"),
+// Boogie
+            (".bpl", "text"),
+// Quake
+            ("", "text"),
+// DM
+            (".dm", "c_cpp"),
+// SQF
+            (".sqf", "text"),
+            (".hqf", "text"),
+// CSS
+            (".css", "css"),
+// Avro IDL
+            (".avdl", "text"),
+// Sage
+            (".sage", "python"),
+            (".sagews", "python"),
+// Augeas
+            (".aug", "text"),
+// mupad
+            (".mu", "text"),
+// Alpine Abuild
+            ("", "sh"),
+// C#
+            (".cs", "csharp"),
+            (".cake", "csharp"),
+            (".csx", "csharp"),
+            (".linq", "csharp"),
+// KiCad Legacy Layout
+            (".brd", "text"),
+// Fantom
+            (".fan", "text"),
+// Marko
+            (".marko", "text"),
+// Makefile
+            (".mak", "makefile"),
+            (".d", "makefile"),
+            (".make", "makefile"),
+            (".mk", "makefile"),
+            (".mkfile", "makefile"),
+// Volt
+            (".volt", "d"),
+// CODEOWNERS
+            ("", "gitignore"),
+// Prolog
+            (".pl", "prolog"),
+            (".pro", "prolog"),
+            (".prolog", "prolog"),
+            (".yap", "prolog"),
+// ECL
+            (".ecl", "text"),
+            (".eclxml", "text"),
+// Dhall
+            (".dhall", "haskell"),
+// Creole
+            (".creole", "text"),
+// X BitMap
+            (".xbm", "c_cpp"),
+// Gosu
+            (".gs", "text"),
+            (".gst", "text"),
+            (".gsx", "text"),
+            (".vark", "text"),
+// EmberScript
+            (".em", "coffee"),
+            (".emberscript", "coffee"),
+// Gettext Catalog
+            (".po", "text"),
+            (".pot", "text"),
+// Raw token data
+            (".raw", "text"),
+// GDB
+            (".gdb", "text"),
+            (".gdbinit", "text"),
+// Jison Lex
+            (".jisonlex", "text"),
+// Unix Assembly
+            (".s", "assembly_x86"),
+            (".ms", "assembly_x86"),
+// wisp
+            (".wisp", "clojure"),
+// dircolors
+            (".dircolors", "text"),
+// Grace
+            (".grace", "text"),
+// HLSL
+            (".hlsl", "text"),
+            (".cginc", "text"),
+            (".fx", "text"),
+            (".fxh", "text"),
+            (".hlsli", "text"),
+// Metal
+            (".metal", "c_cpp"),
+// Awk
+            (".awk", "text"),
+            (".auk", "text"),
+            (".gawk", "text"),
+            (".mawk", "text"),
+            (".nawk", "text"),
+// q
+            (".q", "text"),
+// Blade
+            (".blade", "text"),
+            (".blade.php", "text"),
+// RDoc
+            (".rdoc", "rdoc"),
+// LabVIEW
+            (".lvproj", "xml"),
+            (".lvlib", "xml"),
+// XProc
+            (".xpl", "xml"),
+            (".xproc", "xml"),
+// SourcePawn
+            (".sp", "text"),
+            (".inc", "text"),
+// NL
+            (".nl", "text"),
+// Lua
+            (".lua", "lua"),
+            (".fcgi", "lua"),
+            (".nse", "lua"),
+            (".p8", "lua"),
+            (".pd_lua", "lua"),
+            (".rbxs", "lua"),
+            (".rockspec", "lua"),
+            (".wlua", "lua"),
+// Haxe
+            (".hx", "haxe"),
+            (".hxsl", "haxe"),
+// Lark
+            (".lark", "text"),
+// Rebol
+            (".reb", "text"),
+            (".r", "text"),
+            (".r2", "text"),
+            (".r3", "text"),
+            (".rebol", "text"),
+// Gradle
+            (".gradle", "text"),
+// HTML+ERB
+            (".erb", "text"),
+            (".erb.deface", "text"),
+            (".rhtml", "text"),
+// BlitzMax
+            (".bmx", "text"),
+// Perl
+            (".pl", "perl"),
+            (".al", "perl"),
+            (".cgi", "perl"),
+            (".fcgi", "perl"),
+            (".perl", "perl"),
+            (".ph", "perl"),
+            (".plx", "perl"),
+            (".pm", "perl"),
+            (".psgi", "perl"),
+            (".t", "perl"),
+// Slice
+            (".ice", "text"),
+// NetLinx
+            (".axs", "text"),
+            (".axi", "text"),
+// Pod 6
+            (".pod", "perl"),
+            (".pod6", "perl"),
+// SuperCollider
+            (".sc", "text"),
+            (".scd", "text"),
+// Xtend
+            (".xtend", "text"),
+// Genie
+            (".gs", "text"),
+// Parrot Assembly
+            (".pasm", "text"),
+// OpenStep Property List
+            (".plist", "text"),
+            (".glyphs", "text"),
+// Apex
+            (".cls", "java"),
+// Golo
+            (".golo", "text"),
+// ColdFusion CFC
+            (".cfc", "coldfusion"),
+// Motorola 68K Assembly
+            (".asm", "assembly_x86"),
+            (".i", "assembly_x86"),
+            (".inc", "assembly_x86"),
+            (".s", "assembly_x86"),
+            (".x68", "assembly_x86"),
+// Standard ML
+            (".ml", "text"),
+            (".fun", "text"),
+            (".sig", "text"),
+            (".sml", "text"),
+// Factor
+            (".factor", "text"),
+// Pawn
+            (".pwn", "text"),
+            (".inc", "text"),
+            (".sma", "text"),
+// Wavefront Material
+            (".mtl", "text"),
+// GAMS
+            (".gms", "text"),
+// Pug
+            (".jade", "jade"),
+            (".pug", "jade"),
+// Muse
+            (".muse", "text"),
+// MUF
+            (".muf", "forth"),
+            (".m", "forth"),
+// Diff
+            (".diff", "diff"),
+            (".patch", "diff"),
+// Elm
+            (".elm", "elm"),
+// Filebench WML
+            (".f", "text"),
+// MiniD
+            (".minid", "text"),
+// LLVM
+            (".ll", "text"),
+// SSH Config
+            ("", "text"),
+// XPages
+            (".xsp-config", "xml"),
+            (".xsp.metadata", "xml"),
+// Prisma
+            (".prisma", "text"),
+// NewLisp
+            (".nl", "lisp"),
+            (".lisp", "lisp"),
+            (".lsp", "lisp"),
+// EBNF
+            (".ebnf", "text"),
+// P4
+            (".p4", "text"),
+// Nearley
+            (".ne", "text"),
+            (".nearley", "text"),
+// PowerShell
+            (".ps1", "powershell"),
+            (".psd1", "powershell"),
+            (".psm1", "powershell"),
+// Protocol Buffer
+            (".proto", "protobuf"),
+// Jolie
+            (".ol", "text"),
+            (".iol", "text"),
+// VCL
+            (".vcl", "text"),
+// Groovy
+            (".groovy", "groovy"),
+            (".grt", "groovy"),
+            (".gtpl", "groovy"),
+            (".gvy", "groovy"),
+// F*
+            (".fst", "text"),
+// Microsoft Developer Studio Project
+            (".dsp", "text"),
+// Gemfile.lock
+            ("", "text"),
+// Closure Templates
+            (".soy", "soy_template"),
+// Gentoo Eclass
+            (".eclass", "sh"),
+// OpenCL
+            (".cl", "c_cpp"),
+            (".opencl", "c_cpp"),
+// Unity3D Asset
+            (".anim", "yaml"),
+            (".asset", "yaml"),
+            (".mask", "yaml"),
+            (".mat", "yaml"),
+            (".meta", "yaml"),
+            (".prefab", "yaml"),
+            (".unity", "yaml"),
+// CoNLL-U
+            (".conllu", "text"),
+            (".conll", "text"),
+// PowerBuilder
+            (".pbt", "text"),
+            (".sra", "text"),
+            (".sru", "text"),
+            (".srw", "text"),
+// Glyph
+            (".glf", "tcl"),
+// Asymptote
+            (".asy", "c_cpp"),
+// Ballerina
+            (".bal", "text"),
+// PureBasic
+            (".pb", "text"),
+            (".pbi", "text"),
+// mIRC Script
+            (".mrc", "text"),
+// Modelica
+            (".mo", "text"),
+// DataWeave
+            (".dwl", "text"),
+// Classic ASP
+            (".asp", "text"),
+// Nit
+            (".nit", "text"),
+// WebVTT
+            (".vtt", "text"),
+// Reason
+            (".re", "rust"),
+            (".rei", "rust"),
+// Kaitai Struct
+            (".ksy", "yaml"),
+// Smarty
+            (".tpl", "smarty"),
+// SWIG
+            (".i", "c_cpp"),
+// SAS
+            (".sas", "text"),
+// Chapel
+            (".chpl", "text"),
+// IGOR Pro
+            (".ipf", "text"),
+// Verilog
+            (".v", "verilog"),
+            (".veo", "verilog"),
+// OpenType Feature File
+            (".fea", "text"),
+// HXML
+            (".hxml", "text"),
+// Assembly
+            (".asm", "assembly_x86"),
+            (".a51", "assembly_x86"),
+            (".i", "assembly_x86"),
+            (".inc", "assembly_x86"),
+            (".nasm", "assembly_x86"),
+// RMarkdown
+            (".rmd", "markdown"),
+// ATS
+            (".dats", "ocaml"),
+            (".hats", "ocaml"),
+            (".sats", "ocaml"),
+// Processing
+            (".pde", "text"),
+// EJS
+            (".ejs", "ejs"),
+            (".ect", "ejs"),
+            (".jst", "ejs"),
+// AppleScript
+            (".applescript", "applescript"),
+            (".scpt", "applescript"),
+// Kusto
+            (".csl", "text"),
+// CLIPS
+            (".clp", "text"),
+// NetLinx+ERB
+            (".axs.erb", "text"),
+            (".axi.erb", "text"),
+// ASL
+            (".asl", "text"),
+            (".dsl", "text"),
+// RenderScript
+            (".rs", "text"),
+            (".rsh", "text"),
+// Modula-3
+            (".i3", "text"),
+            (".ig", "text"),
+            (".m3", "text"),
+            (".mg", "text"),
+// JSONLD
+            (".jsonld", "javascript"),
+// VBScript
+            (".vbs", "text"),
+// Slim
+            (".slim", "text"),
+// Agda
+            (".agda", "text"),
+// NumPy
+            (".numpy", "text"),
+            (".numpyw", "text"),
+            (".numsc", "text"),
+// cURL Config
+            ("", "text"),
+// Ren'Py
+            (".rpy", "python"),
+// Java Server Pages
+            (".jsp", "jsp"),
+// Ceylon
+            (".ceylon", "text"),
+// Vim Snippet
+            (".snip", "text"),
+            (".snippet", "text"),
+            (".snippets", "text"),
+// EditorConfig
+            ("", "ini"),
+// Gentoo Ebuild
+            (".ebuild", "sh"),
+// Roff
+            (".roff", "text"),
+            (".1", "text"),
+            (".1in", "text"),
+            (".1m", "text"),
+            (".1x", "text"),
+            (".2", "text"),
+            (".3", "text"),
+            (".3in", "text"),
+            (".3m", "text"),
+            (".3p", "text"),
+            (".3pm", "text"),
+            (".3qt", "text"),
+            (".3x", "text"),
+            (".4", "text"),
+            (".5", "text"),
+            (".6", "text"),
+            (".7", "text"),
+            (".8", "text"),
+            (".9", "text"),
+            (".l", "text"),
+            (".man", "text"),
+            (".mdoc", "text"),
+            (".me", "text"),
+            (".ms", "text"),
+            (".n", "text"),
+            (".nr", "text"),
+            (".rno", "text"),
+            (".tmac", "text"),
+// Python
+            (".py", "python"),
+            (".cgi", "python"),
+            (".fcgi", "python"),
+            (".gyp", "python"),
+            (".gypi", "python"),
+            (".lmi", "python"),
+            (".py3", "python"),
+            (".pyde", "python"),
+            (".pyi", "python"),
+            (".pyp", "python"),
+            (".pyt", "python"),
+            (".pyw", "python"),
+            (".rpy", "python"),
+            (".smk", "python"),
+            (".spec", "python"),
+            (".tac", "python"),
+            (".wsgi", "python"),
+            (".xpy", "python"),
+// Omgrofl
+            (".omgrofl", "text"),
+// xBase
+            (".prg", "text"),
+            (".ch", "text"),
+            (".prw", "text"),
+// XCompose
+            ("", "text"),
+// Cabal Config
+            (".cabal", "haskell"),
+// Brainfuck
+            (".b", "text"),
+            (".bf", "text"),
+// Xojo
+            (".xojo_code", "text"),
+            (".xojo_menu", "text"),
+            (".xojo_report", "text"),
+            (".xojo_script", "text"),
+            (".xojo_toolbar", "text"),
+            (".xojo_window", "text"),
+// SMT
+            (".smt2", "text"),
+            (".smt", "text"),
+// 1C Enterprise
+            (".bsl", "text"),
+            (".os", "text"),
+// X10
+            (".x10", "text"),
+// Objective-C++
+            (".mm", "objectivec"),
+// CoffeeScript
+            (".coffee", "coffee"),
+            ("._coffee", "coffee"),
+            (".cake", "coffee"),
+            (".cjsx", "coffee"),
+            (".iced", "coffee"),
+// Bison
+            (".bison", "text"),
+// Mustache
+            (".mustache", "smarty"),
+// ABAP CDS
+            (".asddls", "text"),
+// JSONiq
+            (".jq", "jsoniq"),
+// Microsoft Visual Studio Solution
+            (".sln", "text"),
+// D-ObjDump
+            (".d-objdump", "assembly_x86"),
+// HiveQL
+            (".q", "sql"),
+            (".hql", "sql"),
+// ShellSession
+            (".sh-session", "sh"),
+// Boo
+            (".boo", "text"),
+// Literate Haskell
+            (".lhs", "text"),
+// Solidity
+            (".sol", "text"),
+// KiCad Layout
+            (".kicad_pcb", "lisp"),
+            (".kicad_mod", "lisp"),
+            (".kicad_wks", "lisp"),
+// Vala
+            (".vala", "vala"),
+            (".vapi", "vala"),
+// Slash
+            (".sl", "text"),
+// TSV
+            (".tsv", "text"),
+// Stan
+            (".stan", "text"),
+// Glyph Bitmap Distribution Format
+            (".bdf", "text"),
+// edn
+            (".edn", "clojure"),
+// Q#
+            (".qs", "text"),
+// YASnippet
+            (".yasnippet", "text"),
+// HAProxy
+            (".cfg", "text"),
+// PicoLisp
+            (".l", "lisp"),
+// StringTemplate
+            (".st", "html"),
+// Max
+            (".maxpat", "json"),
+            (".maxhelp", "json"),
+            (".maxproj", "json"),
+            (".mxt", "json"),
+            (".pat", "json"),
+// Shen
+            (".shen", "text"),
+// RUNOFF
+            (".rnh", "text"),
+            (".rno", "text"),
+// Ioke
+            (".ik", "text"),
+// Nemerle
+            (".n", "text"),
+// CMake
+            (".cmake", "text"),
+            (".cmake.in", "text"),
+// Edje Data Collection
+            (".edc", "c_cpp"),
+// Web Ontology Language
+            (".owl", "xml"),
+// Pan
+            (".pan", "text"),
+// 4D
+            (".4dm", "text"),
+// eC
+            (".ec", "text"),
+            (".eh", "text"),
+// Jasmin
+            (".j", "java"),
+// IDL
+            (".pro", "text"),
+            (".dlm", "text"),
+// Common Workflow Language
+            (".cwl", "yaml"),
+// MQL5
+            (".mq5", "c_cpp"),
+            (".mqh", "c_cpp"),
+// Befunge
+            (".befunge", "text"),
+// Nim
+            (".nim", "text"),
+            (".nim.cfg", "text"),
+            (".nimble", "text"),
+            (".nimrod", "text"),
+            (".nims", "text"),
+// Jinja
+            (".jinja", "django"),
+            (".j2", "django"),
+            (".jinja2", "django"),
+// CodeQL
+            (".ql", "text"),
+            (".qll", "text"),
+// Rouge
+            (".rg", "clojure"),
+// Texinfo
+            (".texinfo", "text"),
+            (".texi", "text"),
+            (".txi", "text"),
+// Qt Script
+            (".qs", "javascript"),
+// Mirah
+            (".druby", "ruby"),
+            (".duby", "ruby"),
+            (".mirah", "ruby"),
+// GN
+            (".gn", "python"),
+            (".gni", "python"),
+// Tcsh
+            (".tcsh", "sh"),
+            (".csh", "sh"),
+// Cpp-ObjDump
+            (".cppobjdump", "assembly_x86"),
+            (".c++-objdump", "assembly_x86"),
+            (".c++objdump", "assembly_x86"),
+            (".cpp-objdump", "assembly_x86"),
+            (".cxx-objdump", "assembly_x86"),
+// PostCSS
+            (".pcss", "text"),
+            (".postcss", "text"),
+// GEDCOM
+            (".ged", "text"),
+// Zephir
+            (".zep", "php"),
+// Mathematica
+            (".mathematica", "text"),
+            (".cdf", "text"),
+            (".m", "text"),
+            (".ma", "text"),
+            (".mt", "text"),
+            (".nb", "text"),
+            (".nbp", "text"),
+            (".wl", "text"),
+            (".wlt", "text"),
+// AMPL
+            (".ampl", "text"),
+            (".mod", "text"),
+// AsciiDoc
+            (".asciidoc", "asciidoc"),
+            (".adoc", "asciidoc"),
+            (".asc", "asciidoc"),
+// Lex
+            (".l", "text"),
+            (".lex", "text"),
+// TLA
+            (".tla", "text"),
+// DIGITAL Command Language
+            (".com", "text"),
+// Swift
+            (".swift", "text"),
+// Elixir
+            (".ex", "elixir"),
+            (".exs", "elixir"),
+// MATLAB
+            (".matlab", "matlab"),
+            (".m", "matlab"),
+// Smali
+            (".smali", "text"),
+// PLSQL
+            (".pls", "sql"),
+            (".bdy", "sql"),
+            (".ddl", "sql"),
+            (".fnc", "sql"),
+            (".pck", "sql"),
+            (".pkb", "sql"),
+            (".pks", "sql"),
+            (".plb", "sql"),
+            (".plsql", "sql"),
+            (".prc", "sql"),
+            (".spc", "sql"),
+            (".sql", "sql"),
+            (".tpb", "sql"),
+            (".tps", "sql"),
+            (".trg", "sql"),
+            (".vw", "sql"),
+// Stylus
+            (".styl", "stylus"),
+// AutoIt
+            (".au3", "autohotkey"),
+// JavaScript
+            (".js", "javascript"),
+            ("._js", "javascript"),
+            (".bones", "javascript"),
+            (".cjs", "javascript"),
+            (".es", "javascript"),
+            (".es6", "javascript"),
+            (".frag", "javascript"),
+            (".gs", "javascript"),
+            (".jake", "javascript"),
+            (".jsb", "javascript"),
+            (".jscad", "javascript"),
+            (".jsfl", "javascript"),
+            (".jsm", "javascript"),
+            (".jss", "javascript"),
+            (".jsx", "javascript"),
+            (".mjs", "javascript"),
+            (".njs", "javascript"),
+            (".pac", "javascript"),
+            (".sjs", "javascript"),
+            (".ssjs", "javascript"),
+            (".xsjs", "javascript"),
+            (".xsjslib", "javascript"),
+// Liquid
+            (".liquid", "liquid"),
+// Xonsh
+            (".xsh", "text"),
+// ASN.1
+            (".asn", "text"),
+            (".asn1", "text"),
+// Beef
+            (".bf", "csharp"),
+// TypeScript
+            (".ts", "typescript"),
+// IRC log
+            (".irclog", "text"),
+            (".weechatlog", "text"),
+// X PixMap
+            (".xpm", "c_cpp"),
+            (".pm", "c_cpp"),
+// Git Attributes
+            ("", "gitignore"),
+// Go
+            (".go", "golang"),
+// XC
+            (".xc", "c_cpp"),
+// X Font Directory Index
+            ("", "text"),
+// XQuery
+            (".xquery", "xquery"),
+            (".xq", "xquery"),
+            (".xql", "xquery"),
+            (".xqm", "xquery"),
+            (".xqy", "xquery"),
+// ZenScript
+            (".zs", "text"),
+// Julia
+            (".jl", "julia"),
+// Oz
+            (".oz", "text"),
+// Batchfile
+            (".bat", "batchfile"),
+            (".cmd", "batchfile"),
+// Zeek
+            (".zeek", "text"),
+            (".bro", "text"),
+// Svelte
+            (".svelte", "html"),
+// Handlebars
+            (".handlebars", "handlebars"),
+            (".hbs", "handlebars"),
+// DTrace
+            (".d", "c_cpp"),
+// Rich Text Format
+            (".rtf", "text"),
+// TeX
+            (".tex", "tex"),
+            (".aux", "tex"),
+            (".bbx", "tex"),
+            (".cbx", "tex"),
+            (".cls", "tex"),
+            (".dtx", "tex"),
+            (".ins", "tex"),
+            (".lbx", "tex"),
+            (".ltx", "tex"),
+            (".mkii", "tex"),
+            (".mkiv", "tex"),
+            (".mkvi", "tex"),
+            (".sty", "tex"),
+            (".toc", "tex"),
+// PostScript
+            (".ps", "text"),
+            (".eps", "text"),
+            (".epsi", "text"),
+            (".pfa", "text"),
+// OpenQASM
+            (".qasm", "text"),
+// COBOL
+            (".cob", "cobol"),
+            (".cbl", "cobol"),
+            (".ccp", "cobol"),
+            (".cobol", "cobol"),
+            (".cpy", "cobol"),
+// Turing
+            (".t", "text"),
+            (".tu", "text"),
+// BibTeX
+            (".bib", "tex"),
+            (".bibtex", "tex"),
+// Fortran Free Form
+            (".f90", "text"),
+            (".f03", "text"),
+            (".f08", "text"),
+            (".f95", "text"),
+// Clean
+            (".icl", "text"),
+            (".dcl", "text"),
+// Moocode
+            (".moo", "text"),
+// LTspice Symbol
+            (".asy", "text"),
+// Opa
+            (".opa", "text"),
+// Readline Config
+            ("", "text"),
+// JSON5
+            (".json5", "javascript"),
+// GLSL
+            (".glsl", "glsl"),
+            (".fp", "glsl"),
+            (".frag", "glsl"),
+            (".frg", "glsl"),
+            (".fs", "glsl"),
+            (".fsh", "glsl"),
+            (".fshader", "glsl"),
+            (".geo", "glsl"),
+            (".geom", "glsl"),
+            (".glslf", "glsl"),
+            (".glslv", "glsl"),
+            (".gs", "glsl"),
+            (".gshader", "glsl"),
+            (".shader", "glsl"),
+            (".tesc", "glsl"),
+            (".tese", "glsl"),
+            (".vert", "glsl"),
+            (".vrx", "glsl"),
+            (".vsh", "glsl"),
+            (".vshader", "glsl"),
+// CSON
+            (".cson", "coffee"),
+// Harbour
+            (".hb", "text"),
+// OpenSCAD
+            (".scad", "scad"),
+// HTML+ECR
+            (".ecr", "text"),
+// Turtle
+            (".ttl", "text"),
+// C
+            (".c", "c_cpp"),
+            (".cats", "c_cpp"),
+            (".h", "c_cpp"),
+            (".idc", "c_cpp"),
+// Nu
+            (".nu", "scheme"),
+// ImageJ Macro
+            (".ijm", "text"),
+// TI Program
+            (".8xp", "text"),
+            (".8xk", "text"),
+            (".8xk.txt", "text"),
+            (".8xp.txt", "text"),
+// R
+            (".r", "r"),
+            (".rd", "r"),
+            (".rsx", "r"),
+// sed
+            (".sed", "text"),
+// Arc
+            (".arc", "text"),
+// RPM Spec
+            (".spec", "text"),
+// OpenRC runscript
+            ("", "sh"),
+// Vim script
+            (".vim", "text"),
+            (".vba", "text"),
+            (".vmb", "text"),
+// BlitzBasic
+            (".bb", "text"),
+            (".decls", "text"),
+// ANTLR
+            (".g4", "text"),
+// EML
+            (".eml", "text"),
+            (".mbox", "text"),
+// CWeb
+            (".w", "text"),
+// REALbasic
+            (".rbbas", "text"),
+            (".rbfrm", "text"),
+            (".rbmnu", "text"),
+            (".rbres", "text"),
+            (".rbtbar", "text"),
+            (".rbuistate", "text"),
+// Propeller Spin
+            (".spin", "text"),
+// Ox
+            (".ox", "text"),
+            (".oxh", "text"),
+            (".oxo", "text"),
+// Pic
+            (".pic", "text"),
+            (".chem", "text"),
+// Wollok
+            (".wlk", "text"),
+// Filterscript
+            (".fs", "text"),
+// Bluespec
+            (".bsv", "verilog"),
+// Nginx
+            (".nginx", "text"),
+            (".nginxconf", "text"),
+            (".vhost", "text"),
+// HTML+EEX
+            (".eex", "text"),
+            (".html.leex", "text"),
+// Singularity
+            ("", "text"),
+// Formatted
+            (".for", "text"),
+            (".eam.fs", "text"),
+// Pike
+            (".pike", "text"),
+            (".pmod", "text"),
+// ZAP
+            (".zap", "text"),
+            (".xzap", "text"),
+// Erlang
+            (".erl", "erlang"),
+            (".app.src", "erlang"),
+            (".es", "erlang"),
+            (".escript", "erlang"),
+            (".hrl", "erlang"),
+            (".xrl", "erlang"),
+            (".yrl", "erlang"),
+// Dogescript
+            (".djs", "text"),
+// Squirrel
+            (".nut", "c_cpp"),
+// Sieve
+            (".sieve", "text"),
+// Jupyter Notebook
+            (".ipynb", "json"),
+// World of Warcraft Addon Data
+            (".toc", "text"),
+// Pod
+            (".pod", "perl"),
+// Git Config
+            (".gitconfig", "ini"),
+// SQL
+            (".sql", "sql"),
+            (".cql", "sql"),
+            (".ddl", "sql"),
+            (".inc", "sql"),
+            (".mysql", "sql"),
+            (".prc", "sql"),
+            (".tab", "sql"),
+            (".udf", "sql"),
+            (".viw", "sql"),
+// VHDL
+            (".vhdl", "vhdl"),
+            (".vhd", "vhdl"),
+            (".vhf", "vhdl"),
+            (".vhi", "vhdl"),
+            (".vho", "vhdl"),
+            (".vhs", "vhdl"),
+            (".vht", "vhdl"),
+            (".vhw", "vhdl"),
+// Python traceback
+            (".pytb", "text"),
+// TOML
+            (".toml", "toml"),
+// ApacheConf
+            (".apacheconf", "apache_conf"),
+            (".vhost", "apache_conf"),
+// Alloy
+            (".als", "text"),
+// Java
+            (".java", "java"),
+// Kit
+            (".kit", "html"),
+// FLUX
+            (".fx", "text"),
+            (".flux", "text"),
+// Yacc
+            (".y", "text"),
+            (".yacc", "text"),
+            (".yy", "text"),
+// Logos
+            (".xm", "text"),
+            (".x", "text"),
+            (".xi", "text"),
+// Windows Registry Entries
+            (".reg", "ini"),
+// TSX
+            (".tsx", "javascript"),
+// Textile
+            (".textile", "textile"),
+// PureScript
+            (".purs", "haskell"),
+// Isabelle
+            (".thy", "text"),
+// Uno
+            (".uno", "csharp"),
+// Clojure
+            (".clj", "clojure"),
+            (".boot", "clojure"),
+            (".cl2", "clojure"),
+            (".cljc", "clojure"),
+            (".cljs", "clojure"),
+            (".cljs.hl", "clojure"),
+            (".cljscm", "clojure"),
+            (".cljx", "clojure"),
+            (".hic", "clojure"),
+// Limbo
+            (".b", "text"),
+            (".m", "text"),
+// Io
+            (".io", "io"),
+// V
+            (".v", "golang"),
+// WebIDL
+            (".webidl", "text"),
+// Visual Basic .NET
+            (".vb", "text"),
+            (".vbhtml", "text"),
+// Tea
+            (".tea", "text"),
+// PlantUML
+            (".puml", "text"),
+            (".iuml", "text"),
+            (".plantuml", "text"),
+// Self
+            (".self", "text"),
+// OpenEdge ABL
+            (".p", "text"),
+            (".cls", "text"),
+            (".w", "text"),
+// Nunjucks
+            (".njk", "nunjucks"),
+// jq
+            (".jq", "text"),
+// Sass
+            (".sass", "sass"),
+// desktop
+            (".desktop", "text"),
+            (".desktop.in", "text"),
+// STON
+            (".ston", "text"),
+// HTML+Razor
+            (".cshtml", "razor"),
+            (".razor", "razor"),
+// Haml
+            (".haml", "haml"),
+            (".haml.deface", "haml"),
+// ASP.NET
+            (".asax", "text"),
+            (".ascx", "text"),
+            (".ashx", "text"),
+            (".asmx", "text"),
+            (".aspx", "text"),
+            (".axd", "text"),
+// ZIL
+            (".zil", "text"),
+            (".mud", "text"),
+// QML
+            (".qml", "text"),
+            (".qbs", "text"),
+// AngelScript
+            (".as", "text"),
+            (".angelscript", "text"),
+// Lean
+            (".lean", "text"),
+            (".hlean", "text"),
+// Objective-J
+            (".j", "text"),
+            (".sj", "text"),
+// MTML
+            (".mtml", "html"),
+// Myghty
+            (".myt", "text"),
+// Linux Kernel Module
+            (".mod", "text"),
+// Csound
+            (".orc", "csound_orchestra"),
+            (".udo", "csound_orchestra"),
+// Wavefront Object
+            (".obj", "text"),
+// KRL
+            (".krl", "text"),
+// ReScript
+            (".res", "rust"),
+// Gerber Image
+            (".gbr", "text"),
+            (".cmp", "text"),
+            (".gbl", "text"),
+            (".gbo", "text"),
+            (".gbp", "text"),
+            (".gbs", "text"),
+            (".gko", "text"),
+            (".gml", "text"),
+            (".gpb", "text"),
+            (".gpt", "text"),
+            (".gtl", "text"),
+            (".gto", "text"),
+            (".gtp", "text"),
+            (".gts", "text"),
+            (".ncl", "text"),
+            (".sol", "text"),
+// C++
+            (".cpp", "c_cpp"),
+            (".c++", "c_cpp"),
+            (".cc", "c_cpp"),
+            (".cp", "c_cpp"),
+            (".cxx", "c_cpp"),
+            (".h", "c_cpp"),
+            (".h++", "c_cpp"),
+            (".hh", "c_cpp"),
+            (".hpp", "c_cpp"),
+            (".hxx", "c_cpp"),
+            (".inc", "c_cpp"),
+            (".inl", "c_cpp"),
+            (".ino", "c_cpp"),
+            (".ipp", "c_cpp"),
+            (".re", "c_cpp"),
+            (".tcc", "c_cpp"),
+            (".tpp", "c_cpp"),
+// Proguard
+            (".pro", "text"),
+// ChucK
+            (".ck", "java"),
+// MLIR
+            (".mlir", "text"),
+// UnrealScript
+            (".uc", "java"),
+// HolyC
+            (".hc", "c_cpp"),
+// QMake
+            (".pro", "text"),
+            (".pri", "text"),
+// Ninja
+            (".ninja", "text"),
+// DNS Zone
+            (".zone", "text"),
+            (".arpa", "text"),
+// Jison
+            (".jison", "text"),
+// Record Jar
+            ("", "text"),
+// reStructuredText
+            (".rst", "text"),
+            (".rest", "text"),
+            (".rest.txt", "text"),
+            (".rst.txt", "text"),
+// HTML+PHP
+            (".phtml", "php"),
+// F#
+            (".fs", "text"),
+            (".fsi", "text"),
+            (".fsx", "text"),
+// AGS Script
+            (".asc", "c_cpp"),
+            (".ash", "c_cpp"),
+// MQL4
+            (".mq4", "c_cpp"),
+            (".mqh", "c_cpp"),
+// ABNF
+            (".abnf", "text"),
+// PigLatin
+            (".pig", "text"),
+// API Blueprint
+            (".apib", "markdown"),
+// CartoCSS
+            (".mss", "text"),
+// ABAP
+            (".abap", "abap"),
+// Inno Setup
+            (".iss", "text"),
+            (".isl", "text"),
+// Dart
+            (".dart", "dart"),
+// JavaScript+ERB
+            (".js.erb", "javascript"),
+// GDScript
+            (".gd", "text"),
+// mcfunction
+            (".mcfunction", "text"),
+// DirectX 3D File
+            (".x", "text"),
+// Cython
+            (".pyx", "text"),
+            (".pxd", "text"),
+            (".pxi", "text"),
+// Rascal
+            (".rsc", "text"),
+// HyPhy
+            (".bf", "text"),
+// BitBake
+            (".bb", "text"),
+// SVG
+            (".svg", "xml"),
+// Meson
+            ("", "text"),
+// Org
+            (".org", "text"),
+// ShaderLab
+            (".shader", "text"),
+// LilyPond
+            (".ly", "text"),
+            (".ily", "text"),
+// Maven POM
+            ("", "xml"),
+// XSLT
+            (".xslt", "xml"),
+            (".xsl", "xml"),
+// Ragel
+            (".rl", "text"),
+// Cloud Firestore Security Rules
+            ("", "less"),
+// Scaml
+            (".scaml", "text"),
+// Public Key
+            (".asc", "text"),
+            (".pub", "text"),
+// Hack
+            (".hack", "php"),
+            (".hh", "php"),
+            (".hhi", "php"),
+            (".php", "php"),
+// Unified Parallel C
+            (".upc", "c_cpp"),
+// GAP
+            (".g", "text"),
+            (".gap", "text"),
+            (".gd", "text"),
+            (".gi", "text"),
+            (".tst", "text"),
+// XML Property List
+            (".plist", "xml"),
+            (".stTheme", "xml"),
+            (".tmCommand", "xml"),
+            (".tmLanguage", "xml"),
+            (".tmPreferences", "xml"),
+            (".tmSnippet", "xml"),
+            (".tmTheme", "xml"),
+// Vim Help File
+            (".txt", "text"),
+// Mako
+            (".mako", "text"),
+            (".mao", "text"),
+// wdl
+            (".wdl", "text"),
+// nesC
+            (".nc", "text"),
+// AL
+            (".al", "text"),
+// Scilab
+            (".sci", "text"),
+            (".sce", "text"),
+            (".tst", "text"),
+// Click
+            (".click", "text"),
+// NEON
+            (".neon", "text"),
+// Linker Script
+            (".ld", "text"),
+            (".lds", "text"),
+            (".x", "text"),
+// Fortran
+            (".f", "text"),
+            (".f77", "text"),
+            (".for", "text"),
+            (".fpp", "text"),
+// SPARQL
+            (".sparql", "text"),
+            (".rq", "text"),
+// XS
+            (".xs", "c_cpp"),
+// fish
+            (".fish", "text"),
+// Racket
+            (".rkt", "lisp"),
+            (".rktd", "lisp"),
+            (".rktl", "lisp"),
+            (".scrbl", "lisp"),
+// HTML
+            (".html", "html"),
+            (".htm", "html"),
+            (".html.hl", "html"),
+            (".inc", "html"),
+            (".xht", "html"),
+            (".xhtml", "html"),
+// Rust
+            (".rs", "rust"),
+            (".rs.in", "rust"),
+// Pure Data
+            (".pd", "text"),
+// INI
+            (".ini", "ini"),
+            (".cfg", "ini"),
+            (".dof", "ini"),
+            (".lektorproject", "ini"),
+            (".prefs", "ini"),
+            (".pro", "ini"),
+            (".properties", "ini"),
+// Spline Font Database
+            (".sfd", "yaml"),
+// LFE
+            (".lfe", "lisp"),
+// Markdown
+            (".md", "markdown"),
+            (".markdown", "markdown"),
+            (".mdown", "markdown"),
+            (".mdwn", "markdown"),
+            (".mdx", "markdown"),
+            (".mkd", "markdown"),
+            (".mkdn", "markdown"),
+            (".mkdown", "markdown"),
+            (".ronn", "markdown"),
+            (".scd", "markdown"),
+            (".workbook", "markdown"),
+// GCC Machine Description
+            (".md", "lisp"),
+// Cycript
+            (".cy", "javascript"),
+// Twig
+            (".twig", "twig"),
+// Module Management System
+            (".mms", "text"),
+            (".mmk", "text"),
+// Fancy
+            (".fy", "text"),
+            (".fancypack", "text"),
+// Python console
+            ("", "text"),
+// XML
+            (".xml", "xml"),
+            (".adml", "xml"),
+            (".admx", "xml"),
+            (".ant", "xml"),
+            (".axml", "xml"),
+            (".builds", "xml"),
+            (".ccproj", "xml"),
+            (".ccxml", "xml"),
+            (".clixml", "xml"),
+            (".cproject", "xml"),
+            (".cscfg", "xml"),
+            (".csdef", "xml"),
+            (".csl", "xml"),
+            (".csproj", "xml"),
+            (".ct", "xml"),
+            (".depproj", "xml"),
+            (".dita", "xml"),
+            (".ditamap", "xml"),
+            (".ditaval", "xml"),
+            (".dll.config", "xml"),
+            (".dotsettings", "xml"),
+            (".filters", "xml"),
+            (".fsproj", "xml"),
+            (".fxml", "xml"),
+            (".glade", "xml"),
+            (".gml", "xml"),
+            (".gmx", "xml"),
+            (".grxml", "xml"),
+            (".gst", "xml"),
+            (".iml", "xml"),
+            (".ivy", "xml"),
+            (".jelly", "xml"),
+            (".jsproj", "xml"),
+            (".kml", "xml"),
+            (".launch", "xml"),
+            (".mdpolicy", "xml"),
+            (".mjml", "xml"),
+            (".mm", "xml"),
+            (".mod", "xml"),
+            (".mxml", "xml"),
+            (".natvis", "xml"),
+            (".ncl", "xml"),
+            (".ndproj", "xml"),
+            (".nproj", "xml"),
+            (".nuspec", "xml"),
+            (".odd", "xml"),
+            (".osm", "xml"),
+            (".pkgproj", "xml"),
+            (".pluginspec", "xml"),
+            (".proj", "xml"),
+            (".props", "xml"),
+            (".ps1xml", "xml"),
+            (".psc1", "xml"),
+            (".pt", "xml"),
+            (".rdf", "xml"),
+            (".res", "xml"),
+            (".resx", "xml"),
+            (".rs", "xml"),
+            (".rss", "xml"),
+            (".sch", "xml"),
+            (".scxml", "xml"),
+            (".sfproj", "xml"),
+            (".shproj", "xml"),
+            (".srdf", "xml"),
+            (".storyboard", "xml"),
+            (".sublime-snippet", "xml"),
+            (".targets", "xml"),
+            (".tml", "xml"),
+            (".ts", "xml"),
+            (".tsx", "xml"),
+            (".ui", "xml"),
+            (".urdf", "xml"),
+            (".ux", "xml"),
+            (".vbproj", "xml"),
+            (".vcxproj", "xml"),
+            (".vsixmanifest", "xml"),
+            (".vssettings", "xml"),
+            (".vstemplate", "xml"),
+            (".vxml", "xml"),
+            (".wixproj", "xml"),
+            (".workflow", "xml"),
+            (".wsdl", "xml"),
+            (".wsf", "xml"),
+            (".wxi", "xml"),
+            (".wxl", "xml"),
+            (".wxs", "xml"),
+            (".x3d", "xml"),
+            (".xacro", "xml"),
+            (".xaml", "xml"),
+            (".xib", "xml"),
+            (".xlf", "xml"),
+            (".xliff", "xml"),
+            (".xmi", "xml"),
+            (".xml.dist", "xml"),
+            (".xmp", "xml"),
+            (".xproj", "xml"),
+            (".xsd", "xml"),
+            (".xspec", "xml"),
+            (".xul", "xml"),
+            (".zcml", "xml"),
+// Frege
+            (".fr", "haskell"),
+// TSQL
+            (".sql", "sql"),
+// robots.txt
+            ("", "text"),
+// LiveScript
+            (".ls", "livescript"),
+            ("._ls", "livescript"),
+// Zig
+            (".zig", "text"),
+// APL
+            (".apl", "text"),
+            (".dyalog", "text"),
+// JSON with Comments
+            (".jsonc", "javascript"),
+            (".sublime-build", "javascript"),
+            (".sublime-commands", "javascript"),
+            (".sublime-completions", "javascript"),
+            (".sublime-keymap", "javascript"),
+            (".sublime-macro", "javascript"),
+            (".sublime-menu", "javascript"),
+            (".sublime-mousemap", "javascript"),
+            (".sublime-project", "javascript"),
+            (".sublime-settings", "javascript"),
+            (".sublime-theme", "javascript"),
+            (".sublime-workspace", "javascript"),
+            (".sublime_metrics", "javascript"),
+            (".sublime_session", "javascript"),
+// Cirru
+            (".cirru", "cirru"),
+// Pony
+            (".pony", "text"),
+// Opal
+            (".opal", "text"),
+// EQ
+            (".eq", "csharp"),
+// Mask
+            (".mask", "mask"),
+// AutoHotkey
+            (".ahk", "autohotkey"),
+            (".ahkl", "autohotkey"),
+// Graph Modeling Language
+            (".gml", "text"),
+// Smalltalk
+            (".st", "text"),
+            (".cs", "text"),
+// Kotlin
+            (".kt", "text"),
+            (".ktm", "text"),
+            (".kts", "text"),
+// ECLiPSe
+            (".ecl", "prolog"),
+// Less
+            (".less", "less"),
+// Redcode
+            (".cw", "text"),
+// Haskell
+            (".hs", "haskell"),
+            (".hs-boot", "haskell"),
+            (".hsc", "haskell"),
+// Ruby
+            (".rb", "ruby"),
+            (".builder", "ruby"),
+            (".eye", "ruby"),
+            (".fcgi", "ruby"),
+            (".gemspec", "ruby"),
+            (".god", "ruby"),
+            (".jbuilder", "ruby"),
+            (".mspec", "ruby"),
+            (".pluginspec", "ruby"),
+            (".podspec", "ruby"),
+            (".prawn", "ruby"),
+            (".rabl", "ruby"),
+            (".rake", "ruby"),
+            (".rbi", "ruby"),
+            (".rbuild", "ruby"),
+            (".rbw", "ruby"),
+            (".rbx", "ruby"),
+            (".ru", "ruby"),
+            (".ruby", "ruby"),
+            (".spec", "ruby"),
+            (".thor", "ruby"),
+            (".watchr", "ruby"),
+// ooc
+            (".ooc", "text"),
+// ObjDump
+            (".objdump", "assembly_x86"),
+// FIGlet Font
+            (".flf", "text"),
+// YARA
+            (".yar", "text"),
+            (".yara", "text"),
+// Papyrus
+            (".psc", "text"),
+// Dylan
+            (".dylan", "text"),
+            (".dyl", "text"),
+            (".intr", "text"),
+            (".lid", "text"),
+// NWScript
+            (".nss", "c_cpp"),
+// ColdFusion
+            (".cfm", "coldfusion"),
+            (".cfml", "coldfusion"),
+// Type Language
+            (".tl", "text"),
+// Gherkin
+            (".feature", "text"),
+            (".story", "text"),
+// Ring
+            (".ring", "text"),
+// Open Policy Agent
+            (".rego", "text"),
+// Ada
+            (".adb", "ada"),
+            (".ada", "ada"),
+            (".ads", "ada"),
+// SRecode Template
+            (".srt", "lisp"),
+// E
+            (".E", "text"),
+// Csound Score
+            (".sco", "csound_score"),
+// FreeMarker
+            (".ftl", "ftl"),
+// Thrift
+            (".thrift", "text"),
+// REXX
+            (".rexx", "text"),
+            (".pprx", "text"),
+            (".rex", "text"),
+// Scala
+            (".scala", "scala"),
+            (".kojo", "scala"),
+            (".sbt", "scala"),
+            (".sc", "scala"),
+// Futhark
+            (".fut", "text"),
+// YANG
+            (".yang", "text"),
+// Macaulay2
+            (".m2", "text"),
+// Mercury
+            (".m", "prolog"),
+            (".moo", "prolog"),
+// MoonScript
+            (".moon", "text"),
+// Genshi
+            (".kid", "xml"),
+// Tcl
+            (".tcl", "tcl"),
+            (".adp", "tcl"),
+            (".tm", "tcl"),
+// TXL
+            (".txl", "text"),
+// Charity
+            (".ch", "text"),
+// Literate CoffeeScript
+            (".litcoffee", "text"),
+            (".coffee.md", "text"),
+// Forth
+            (".fth", "forth"),
+            (".4th", "forth"),
+            (".f", "forth"),
+            (".for", "forth"),
+            (".forth", "forth"),
+            (".fr", "forth"),
+            (".frt", "forth"),
+            (".fs", "forth"),
+// Coq
+            (".coq", "text"),
+            (".v", "text"),
+// Lasso
+            (".lasso", "text"),
+            (".las", "text"),
+            (".lasso8", "text"),
+            (".lasso9", "text"),
+// Oxygene
+            (".oxygene", "text"),
+// Easybuild
+            (".eb", "python"),
+// Eagle
+            (".sch", "xml"),
+            (".brd", "xml"),
+// SubRip Text
+            (".srt", "text"),
+// Component Pascal
+            (".cp", "pascal"),
+            (".cps", "pascal"),
+// SCSS
+            (".scss", "scss"),
+// SugarSS
+            (".sss", "text"),
+// Dafny
+            (".dfy", "text"),
+// J
+            (".ijs", "text"),
+// Brightscript
+            (".brs", "text"),
+// Graphviz (DOT)
+            (".dot", "text"),
+            (".gv", "text"),
+// Cool
+            (".cl", "text"),
+// MediaWiki
+            (".mediawiki", "text"),
+            (".wiki", "text"),
+// Java Properties
+            (".properties", "properties"),
+// ObjectScript
+            (".cls", "text"),
+// Inform 7
+            (".ni", "text"),
+            (".i7x", "text"),
+// Stata
+            (".do", "text"),
+            (".ado", "text"),
+            (".doh", "text"),
+            (".ihlp", "text"),
+            (".mata", "text"),
+            (".matah", "text"),
+            (".sthlp", "text"),
+// Object Data Instance Notation
+            (".odin", "text"),
+// Odin
+            (".odin", "text"),
+// Vue
+            (".vue", "html"),
+// WebAssembly
+            (".wast", "lisp"),
+            (".wat", "lisp"),
+// G-code
+            (".g", "gcode"),
+            (".cnc", "gcode"),
+            (".gco", "gcode"),
+            (".gcode", "gcode"),
+// SystemVerilog
+            (".sv", "verilog"),
+            (".svh", "verilog"),
+            (".vh", "verilog"),
+// C2hs Haskell
+            (".chs", "haskell"),
+// Latte
+            (".latte", "smarty"),
+// nanorc
+            (".nanorc", "text"),
+// RAML
+            (".raml", "yaml"),
+// VBA
+            (".bas", "text"),
+            (".cls", "text"),
+            (".frm", "text"),
+            (".frx", "text"),
+            (".vba", "text"),
+// Gnuplot
+            (".gp", "text"),
+            (".gnu", "text"),
+            (".gnuplot", "text"),
+            (".p", "text"),
+            (".plot", "text"),
+            (".plt", "text"),
+// Nextflow
+            (".nf", "groovy"),
+// JFlex
+            (".flex", "text"),
+            (".jflex", "text"),
+// NASL
+            (".nasl", "text"),
+            (".inc", "text"),
+// Monkey
+            (".monkey", "text"),
+            (".monkey2", "text"),
+// Clarion
+            (".clw", "text"),
+// ActionScript
+            (".as", "actionscript"),
+// Emacs Lisp
+            (".el", "lisp"),
+            (".emacs", "lisp"),
+            (".emacs.desktop", "lisp"),
+// Browserslist
+            ("", "text"),
+// Darcs Patch
+            (".darcspatch", "text"),
+            (".dpatch", "text"),
+// COLLADA
+            (".dae", "xml"),
+// Idris
+            (".idr", "text"),
+            (".lidr", "text"),
+// NSIS
+            (".nsi", "text"),
+            (".nsh", "text"),
+// Ecere Projects
+            (".epj", "json"),
+// PLpgSQL
+            (".pgsql", "pgsql"),
+            (".sql", "pgsql"),
+// Starlark
+            (".bzl", "python"),
+// Isabelle ROOT
+            ("", "text"),
+// Pascal
+            (".pas", "pascal"),
+            (".dfm", "pascal"),
+            (".dpr", "pascal"),
+            (".inc", "pascal"),
+            (".lpr", "pascal"),
+            (".pascal", "pascal"),
+            (".pp", "pascal"),
+// Puppet
+            (".pp", "text"),
+// Pep8
+            (".pep", "text"),
+// Terra
+            (".t", "lua"),
+// Faust
+            (".dsp", "text"),
+// POV-Ray SDL
+            (".pov", "text"),
+            (".inc", "text"),
+// JSON
+            (".json", "json"),
+            (".avsc", "json"),
+            (".geojson", "json"),
+            (".gltf", "json"),
+            (".har", "json"),
+            (".ice", "json"),
+            (".JSON-tmLanguage", "json"),
+            (".jsonl", "json"),
+            (".mcmeta", "json"),
+            (".tfstate", "json"),
+            (".tfstate.backup", "json"),
+            (".topojson", "json"),
+            (".webapp", "json"),
+            (".webmanifest", "json"),
+            (".yy", "json"),
+            (".yyp", "json"),
+// HTTP
+            (".http", "text"),
+// GAML
+            (".gaml", "text"),
+// Cap'n Proto
+            (".capnp", "text"),
+// Cuda
+            (".cu", "c_cpp"),
+            (".cuh", "c_cpp"),
+// C-ObjDump
+            (".c-objdump", "assembly_x86"),
+// Game Maker Language
+            (".gml", "c_cpp"),
+// Regular Expression
+            (".regexp", "text"),
+            (".regex", "text"),
+// Wget Config
+            ("", "text"),
+// Altium Designer
+            (".OutJob", "ini"),
+            (".PcbDoc", "ini"),
+            (".PrjPCB", "ini"),
+            (".SchDoc", "ini"),
+// Objective-C
+            (".m", "objectivec"),
+            (".h", "objectivec"),
+// Parrot
+            (".parrot", "text"),
+// SQLPL
+            (".sql", "sql"),
+            (".db2", "sql"),
+// LOLCODE
+            (".lol", "text"),
+// AspectJ
+            (".aj", "text"),
+// LSL
+            (".lsl", "lsl"),
+            (".lslp", "lsl"),
+// Csound Document
+            (".csd", "csound_document"),
+// SaltStack
+            (".sls", "yaml"),
+// RobotFramework
+            (".robot", "text"),
+// RPC
+            (".x", "c_cpp"),
+// Ignore List
+            (".gitignore", "gitignore"),
+// Parrot Internal Representation
+            (".pir", "text"),
+// LoomScript
+            (".ls", "text"),
+// Shell
+            (".sh", "sh"),
+            (".bash", "sh"),
+            (".bats", "sh"),
+            (".cgi", "sh"),
+            (".command", "sh"),
+            (".env", "sh"),
+            (".fcgi", "sh"),
+            (".ksh", "sh"),
+            (".sh.in", "sh"),
+            (".tmux", "sh"),
+            (".tool", "sh"),
+            (".zsh", "sh"),
+// Redirect Rules
+            ("", "text"),
+// Text
+            (".txt", "text"),
+            (".fr", "text"),
+            (".nb", "text"),
+            (".ncl", "text"),
+            (".no", "text"),
+// Modula-2
+            (".mod", "text"),
+// PogoScript
+            (".pogo", "text"),
+// PHP
+            (".php", "php"),
+            (".aw", "php"),
+            (".ctp", "php"),
+            (".fcgi", "php"),
+            (".inc", "php"),
+            (".php3", "php"),
+            (".php4", "php"),
+            (".php5", "php"),
+            (".phps", "php"),
+            (".phpt", "php"),
+// MAXScript
+            (".ms", "text"),
+            (".mcr", "text"),
+// Crystal
+            (".cr", "ruby"),
+// Eiffel
+            (".e", "eiffel"),
+// Nix
+            (".nix", "nix"),
+// Riot
+            (".riot", "html"),
+// HCL
+            (".hcl", "ruby"),
+            (".nomad", "ruby"),
+            (".tf", "ruby"),
+            (".tfvars", "ruby"),
+            (".workflow", "ruby"),
+// M
+            (".mumps", "text"),
+            (".m", "text"),
+// M4
+            (".m4", "text"),
+// Logtalk
+            (".lgt", "text"),
+            (".logtalk", "text"),
+// Hy
+            (".hy", "text"),
+// Ant Build System
+            ("", "xml"),
+// D
+            (".d", "d"),
+            (".di", "d"),
+// Scheme
+            (".scm", "scheme"),
+            (".sch", "scheme"),
+            (".sld", "scheme"),
+            (".sls", "scheme"),
+            (".sps", "scheme"),
+            (".ss", "scheme"),
+// Grammatical Framework
+            (".gf", "haskell"),
+// Groovy Server Pages
+            (".gsp", "jsp"),
+// Adobe Font Metrics
+            (".afm", "text"),
+// GraphQL
+            (".graphql", "text"),
+            (".gql", "text"),
+            (".graphqls", "text"),
+// Roff Manpage
+            (".1", "text"),
+            (".1in", "text"),
+            (".1m", "text"),
+            (".1x", "text"),
+            (".2", "text"),
+            (".3", "text"),
+            (".3in", "text"),
+            (".3m", "text"),
+            (".3p", "text"),
+            (".3pm", "text"),
+            (".3qt", "text"),
+            (".3x", "text"),
+            (".4", "text"),
+            (".5", "text"),
+            (".6", "text"),
+            (".7", "text"),
+            (".8", "text"),
+            (".9", "text"),
+            (".man", "text"),
+            (".mdoc", "text"),
+// Raku
+            (".6pl", "perl"),
+            (".6pm", "perl"),
+            (".nqp", "perl"),
+            (".p6", "perl"),
+            (".p6l", "perl"),
+            (".p6m", "perl"),
+            (".pl", "perl"),
+            (".pl6", "perl"),
+            (".pm", "perl"),
+            (".pm6", "perl"),
+            (".raku", "perl"),
+            (".rakumod", "perl"),
+            (".t", "perl"),
+// Jsonnet
+            (".jsonnet", "text"),
+            (".libsonnet", "text"),
+
+        }.ToLookup(
+            key => key.extension,
+            value => value.language,
+            StringComparer.OrdinalIgnoreCase
+        );
+    }
+}
