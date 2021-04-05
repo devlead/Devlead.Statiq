@@ -5,7 +5,6 @@
   </PropertyGroup>
 
 
-
   <ItemGroup>
     <PackageReference Include="Statiq.Web" Version="1.0.0-beta.24" />
   </ItemGroup>
@@ -14,5 +13,11 @@
     <None Remove="Tabs\TabGroup.css" />
     <EmbeddedResource Include="Tabs\TabGroup.css" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="../devlead.png" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
 
 </Project>
