@@ -67,6 +67,6 @@ tabs:
               vnetprd ----> SQLProd[SQL Prod fa:fa-server ] --> DBProd[(DBProd)]
           end
       ```
-
+  - include:  ../../includes/posts/tabs/Include.md
 ?>
 <?#/ TabGroup?>
