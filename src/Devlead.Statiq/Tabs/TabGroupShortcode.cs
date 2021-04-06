@@ -60,12 +60,15 @@ namespace Devlead.Statiq.Tabs
 
                     if (!string.IsNullOrWhiteSpace(tab.Code) && context.FileSystem.GetFile(document.Source.ChangeFileName(tab.Code)) is {Exists: true} codeFile)
                     {
+                        using var textReader = codeFile.OpenText();
                         MarkdownHelper.RenderMarkdown(
                             document,
                             string.Join(
                                 Environment.NewLine,
-                                string.Concat("```", MarkdownLanguages.LanguageLookup[codeFile.Path.Extension].FirstOrDefault() ?? "text"),
-                                codeFile.OpenText().ReadToEnd(),
+                                string.Concat("```", tab.CodeLang ?? MarkdownLanguages.LanguageLookup[codeFile.Path.Extension].FirstOrDefault() ?? "text"),
+                                textReader
+                                    .ReadToEnd()
+                                    .TrimEnd(),
                                 "```"
                                 ),
                             writer,
