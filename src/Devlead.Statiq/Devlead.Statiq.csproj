@@ -16,7 +16,7 @@
 
 
   <ItemGroup>
-    <None Include="../devlead.png" Pack="true" PackagePath=""/>
+    <None Include="../devlead.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
 
