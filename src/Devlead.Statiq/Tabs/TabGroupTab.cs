@@ -20,5 +20,7 @@ namespace Devlead.Statiq.Tabs
         public string Content { get; set; }
         
         public string Code { get; set; }
+        
+        public string CodeLang { get; set; }
     }
 }

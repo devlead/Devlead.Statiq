@@ -20,6 +20,9 @@ tabs:
     code: ../../../Devlead.Statiq/Devlead.Statiq.csproj
   - code: ../../settings.yml
   - code: ../../Devlead.Statiq.TestWeb.csproj
+  - codeLang: html
+    code: ../_scripts.cshtml
+  - code: ../_scripts.cshtml
 ?>
 <?#/ TabGroup?>
 

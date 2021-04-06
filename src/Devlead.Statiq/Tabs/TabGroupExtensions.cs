@@ -26,9 +26,17 @@ namespace Devlead.Statiq.Tabs
                         .Combine(engine.FileSystem.OutputPath)
                         .Combine("scss")
                         .GetFilePath("TabGroup.css");
-                    using var tabGroupStream =  engine.FileSystem.GetFile(
+                    
+                    var file = engine.FileSystem.GetFile(
                         tabGroupCssPath
-                    ).OpenWrite();
+                    );
+
+                    if (file.Exists)
+                    {
+                        return;
+                    }
+                    
+                    using var tabGroupStream =  file.OpenWrite();
                     
                     resourceStream.CopyTo(tabGroupStream);
                 });
