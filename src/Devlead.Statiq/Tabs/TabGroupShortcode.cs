@@ -57,26 +57,27 @@ namespace Devlead.Statiq.Tabs
                             null
                         );
                     }
+                    
+                    RenderExternalDocument(
+                        document,
+                        context, 
+                        writer,
+                        prependLinkRoot,
+                        configuration,
+                        isCodeBlock: false,
+                        filePath: tab.Include
+                    );
 
-                    if (!string.IsNullOrWhiteSpace(tab.Code) && context.FileSystem.GetFile(document.Source.ChangeFileName(tab.Code)) is {Exists: true} codeFile)
-                    {
-                        using var textReader = codeFile.OpenText();
-                        MarkdownHelper.RenderMarkdown(
-                            document,
-                            string.Join(
-                                Environment.NewLine,
-                                string.Concat("```", tab.CodeLang ?? MarkdownLanguages.LanguageLookup[codeFile.Path.Extension].FirstOrDefault() ?? "text"),
-                                textReader
-                                    .ReadToEnd()
-                                    .TrimEnd(),
-                                "```"
-                                ),
-                            writer,
-                            prependLinkRoot,
-                            configuration,
-                            null
+                    RenderExternalDocument(
+                        document,
+                        context, 
+                        writer,
+                        prependLinkRoot,
+                        configuration,
+                        overrideCodeLang: tab.CodeLang,
+                        isCodeBlock: true,
+                        filePath: tab.Code
                         );
-                    }
                     
                     contentBuilder.AppendLine(writer.ToString());
                 }
@@ -89,6 +90,49 @@ namespace Devlead.Statiq.Tabs
 
             return new ShortcodeResult(
                 contentBuilder.ToString()
+            );
+        }
+
+        private static void RenderExternalDocument(
+            IDocument document,
+            IExecutionState context,
+            TextWriter writer,
+            bool prependLinkRoot,
+            string configuration,
+            string filePath, 
+            bool isCodeBlock,
+            string overrideCodeLang = null
+            )
+        {
+            if (string.IsNullOrWhiteSpace(filePath) ||
+                context.FileSystem.GetFile(document.Source.ChangeFileName(filePath)) is not
+                    {Exists: true} externalDocument
+            )
+            {
+                return;
+            }
+
+            using var textReader = externalDocument.OpenText();
+            var content = textReader
+                .ReadToEnd();
+            MarkdownHelper.RenderMarkdown(
+                document,
+                isCodeBlock
+                    ? string.Join(
+                        Environment.NewLine,
+                        string.Concat("```",
+                            overrideCodeLang ?? MarkdownLanguages.LanguageLookup[externalDocument.Path.Extension]
+                                .FirstOrDefault() ??
+                            "text"),
+                        content
+                            .TrimEnd(),
+                        "```"
+                    )
+                    : content,
+                writer,
+                prependLinkRoot,
+                configuration,
+                null
             );
         }
     }
