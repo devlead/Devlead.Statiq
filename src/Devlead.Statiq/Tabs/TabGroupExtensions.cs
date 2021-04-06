@@ -7,10 +7,14 @@ namespace Devlead.Statiq.Tabs
 {
     public static class TabGroupExtensions
     {
-        public static Bootstrapper AddTabGroupShortCode(this Bootstrapper bootstrapper)
+        public static Bootstrapper AddTabGroupShortCode(
+            this Bootstrapper bootstrapper,
+            string tabGroupShortcode = "TabGroup",
+            string tabGroupCssShortcode = "TabGroupCss"
+            )
         {
-            bootstrapper.AddShortcode<TabGroupShortcode>("TabGroup");
-            bootstrapper.AddShortcode<TabGroupCssShortcode>("TabGroupCss");
+            bootstrapper.AddShortcode<TabGroupShortcode>(tabGroupShortcode);
+            bootstrapper.AddShortcode<TabGroupCssShortcode>(tabGroupCssShortcode);
             
             bootstrapper.ConfigureEngine(engine =>
             {
