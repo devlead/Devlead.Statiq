@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -14,7 +15,7 @@ namespace Devlead.Statiq.Tabs
         public string Name
         {
             get => _name ??= !string.IsNullOrWhiteSpace(Include)
-                                ? Path.GetFileName(Include)
+                                ? CultureInfo.InvariantCulture.TextInfo.ToTitleCase(Path.GetFileNameWithoutExtension(Include).Replace("_", " "))
                                 : !string.IsNullOrWhiteSpace(Code)
                                     ? Path.GetFileName(Code)
                                     : Id;
