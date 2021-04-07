@@ -27,7 +27,7 @@ namespace Devlead.Statiq.Markdown
             string callerMemberName = null
         )
         {
-            string GetCallerInfo() => $"{Path.GetFileNameWithoutExtension(callerFilePath)}:{callerLineNumber}:{callerMemberName}";
+            string GetCallerInfo() => $"{Path.GetFileName(callerFilePath)}:{callerLineNumber}:{callerMemberName}";
 
             // If no path specified just skip
             if (string.IsNullOrWhiteSpace(filePath))

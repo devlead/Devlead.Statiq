@@ -5,7 +5,7 @@ using System;
 
 namespace Devlead.Statiq.Tabs
 {
-    public class TabGroup
+    public record TabGroup
     {
         public string Id { get; } = Guid.NewGuid().ToString("n");
         public TabGroupTab[] Tabs { get; set; } 
