@@ -10,11 +10,11 @@ tabs:
       Quote some latin
 
       > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elementum neque, ac pharetra tortor. Vivamus ac vehicula augue. Curabitur pretium commodo nisi id pellentesque.
-      
+
       ## Useful?
 
       I think so!
-      
+
   - content: |
       > Below code is an example of an TabGroup tab fetching into code fence
     code: ../../../Devlead.Statiq/Devlead.Statiq.csproj
@@ -22,7 +22,6 @@ tabs:
   - code: ../../Devlead.Statiq.TestWeb.csproj
   - codeLang: html
     code: ../_scripts.cshtml
-  - code: ../_scripts.cshtml
 ?>
 <?#/ TabGroup?>
 
