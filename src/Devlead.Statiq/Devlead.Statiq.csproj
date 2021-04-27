@@ -6,7 +6,7 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Statiq.Web" Version="1.0.0-beta.26" />
+    <PackageReference Include="Statiq.Web" Version="1.0.0-beta.27" />
   </ItemGroup>
 
   <ItemGroup>
