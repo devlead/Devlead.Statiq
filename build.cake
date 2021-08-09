@@ -49,7 +49,12 @@ Setup(
                 .WithProperty("ContinuousIntegrationBuild", gh.IsRunningOnGitHubActions ? "true" : "false")
                 .WithProperty("EmbedUntrackedSources", "true"),
             artifactsPath,
-            artifactsPath.Combine(version)
+            artifactsPath.Combine(version),
+            "Devlead.Statiq.TestWeb",
+            new [] {
+                "net5.0",
+                "netcoreapp3.1"
+            }
             );
     }
 );
@@ -95,7 +100,6 @@ Task("Clean")
             )
     )
 .Then("Build")
-    .Default()
     .Does<BuildData>(
         static (context, data) => context.DotNetCoreBuild(
             data.ProjectRoot.FullPath,
@@ -105,6 +109,24 @@ Task("Clean")
             }
         )
     )
+.Then("Test")
+    .DoesForEach<BuildData, string>(
+        static (data, context) => data.TestTargetFrameworks,
+        static (data, item, context) => {
+            context.Information("Testing target framework {0}", item);
+            context.DotNetCoreRun(
+                data.TestProjectPath.FullPath,
+                "pipelines -l Warning",
+                new DotNetCoreRunSettings
+                {
+                    Framework = item,
+                    NoRestore = true,
+                    NoBuild = !context.IsRunningOnWindows()
+                }
+            );
+        }
+    )
+    .Default()
 .Then("Pack")
     .Does<BuildData>(
         static (context, data) => context.DotNetCorePack(
