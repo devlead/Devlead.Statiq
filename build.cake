@@ -121,7 +121,7 @@ Task("Clean")
                 {
                     Framework = item,
                     NoRestore = true,
-                    NoBuild = true
+                    NoBuild = !context.IsRunningOnWindows()
                 }
             );
         }
