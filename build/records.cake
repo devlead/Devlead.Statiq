@@ -7,11 +7,14 @@ public record BuildData(
     DirectoryPath ProjectRoot,
     DotNetCoreMSBuildSettings MSBuildSettings,
     DirectoryPath ArtifactsPath,
-    DirectoryPath OutputPath
+    DirectoryPath OutputPath,
+    string TestProjectName,
+    string [] TestTargetFrameworks
     )
 {
     public DirectoryPath NuGetOutputPath { get; } = OutputPath.Combine("nuget");
     public DirectoryPath BinaryOutputPath { get; } = OutputPath.Combine("bin");
+    public DirectoryPath TestProjectPath { get; } = ProjectRoot.Combine(TestProjectName);
     public string GitHubNuGetSource { get; } = System.Environment.GetEnvironmentVariable("GH_PACKAGES_NUGET_SOURCE");
     public string GitHubNuGetApiKey { get; } = System.Environment.GetEnvironmentVariable("GH_PACKAGES_NUGET_APIKEY");
     public string NuGetSource { get; } = System.Environment.GetEnvironmentVariable("NUGET_SOURCE");
