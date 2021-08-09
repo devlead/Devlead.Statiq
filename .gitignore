@@ -42,3 +42,4 @@ TestResult.xml
 .vs/
 .idea/
 [Aa]rtifacts/
+src/Devlead.Statiq.TestWeb/cache/
