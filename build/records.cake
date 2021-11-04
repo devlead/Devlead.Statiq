@@ -5,6 +5,7 @@ public record BuildData(
     string Version,
     bool IsMainBranch,
     DirectoryPath ProjectRoot,
+    string Configuration,
     DotNetCoreMSBuildSettings MSBuildSettings,
     DirectoryPath ArtifactsPath,
     DirectoryPath OutputPath,

@@ -19,6 +19,7 @@ Setup(
         var version = assertedVersions.LegacySemVerPadded;
         var branchName = assertedVersions.BranchName;
         var isMainBranch = StringComparer.OrdinalIgnoreCase.Equals("main", branchName);
+        var configuration = context.Argument("configuration", "Release");
 
         context.Information("Building version {0} (Branch: {1}, IsMain: {2})",
             version,
@@ -32,8 +33,9 @@ Setup(
             version,
             isMainBranch,
             "src",
+            configuration,
             new DotNetCoreMSBuildSettings()
-                .SetConfiguration("Release")
+                .SetConfiguration(configuration)
                 .SetVersion(version)
                 .WithProperty("Copyright", $"Mattias Karlsson © {DateTime.UtcNow.Year}")
                 .WithProperty("Authors", "devlead")
@@ -119,9 +121,10 @@ Task("Clean")
                 "pipelines -l Warning",
                 new DotNetCoreRunSettings
                 {
+                    Configuration = data.Configuration,
                     Framework = item,
                     NoRestore = true,
-                    NoBuild = !context.IsRunningOnWindows()
+                    NoBuild = true
                 }
             );
         }
