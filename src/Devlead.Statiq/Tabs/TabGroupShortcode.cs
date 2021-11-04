@@ -30,7 +30,7 @@ namespace Devlead.Statiq.Tabs
 
             contentBuilder.AppendLine("<div class=\"tab-wrap\">");
 
-        
+
             var first = true;
             foreach(var tab in tabGroup.Tabs)
             {
@@ -42,12 +42,13 @@ namespace Devlead.Statiq.Tabs
             {
                 contentBuilder.AppendLine("<div class=\"tab__content\">");
                 contentBuilder.AppendLine();
-                
+
                 using (var writer = new StringWriter())
                 {
                     if (!string.IsNullOrWhiteSpace(tab.Content))
                     {
                         MarkdownHelper.RenderMarkdown(
+                            context,
                             document,
                             tab.Content,
                             writer,
@@ -56,9 +57,9 @@ namespace Devlead.Statiq.Tabs
                             null
                         );
                     }
-                    
+
                     document.RenderExternalDocument(
-                        context, 
+                        context,
                         writer,
                         prependLinkRoot,
                         configuration,
@@ -67,7 +68,7 @@ namespace Devlead.Statiq.Tabs
                     );
 
                     document.RenderExternalDocument(
-                        context, 
+                        context,
                         writer,
                         prependLinkRoot,
                         configuration,
@@ -75,7 +76,7 @@ namespace Devlead.Statiq.Tabs
                         isCodeBlock: true,
                         filePath: tab.Code
                         );
-                    
+
                     contentBuilder.AppendLine(writer.ToString());
                 }
 

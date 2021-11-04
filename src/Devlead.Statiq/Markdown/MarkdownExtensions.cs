@@ -44,14 +44,14 @@ namespace Devlead.Statiq.Markdown
                         {IsAbsolute: true} changedPath => changedPath,
                         _ => relativePath
                     },
-                
+
                 // If absolute use that
                 {IsAbsolute: true} absolutePath => absolutePath,
-                
+
                 // if neither assume invalid
                 _ => NormalizedPath.Null
             };
-            
+
             if (normalizedFilePath.IsNullOrEmpty)
             {
                 context.Logger.LogWarning(document, $"{GetCallerInfo()}: Invalid path {filePath} specified skipping.");
@@ -65,12 +65,12 @@ namespace Devlead.Statiq.Markdown
                 } switch
                 {
                     {Exists: true} existingFile => existingFile,
-                    
+
                     // If file doesn't exists fallback on input file
                     _ => context.FileSystem.GetInputFile(filePath)
 
                 };
-            
+
             if (externalDocument?.Exists != true)
             {
                 context.Logger.LogWarning(document, $"{GetCallerInfo()}: file path {filePath} not found.");
@@ -81,6 +81,7 @@ namespace Devlead.Statiq.Markdown
             var content = textReader
                 .ReadToEnd();
             MarkdownHelper.RenderMarkdown(
+                context,
                 document,
                 isCodeBlock
                     ? string.Join(
