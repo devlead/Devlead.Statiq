@@ -34,7 +34,7 @@ Setup(
             isMainBranch,
             "src",
             configuration,
-            new DotNetCoreMSBuildSettings()
+            new DotNetMSBuildSettings()
                 .SetConfiguration(configuration)
                 .SetVersion(version)
                 .WithProperty("Copyright", $"Mattias Karlsson © {DateTime.UtcNow.Year}")
@@ -54,6 +54,7 @@ Setup(
             artifactsPath.Combine(version),
             "Devlead.Statiq.TestWeb",
             new [] {
+                "net6.0",
                 "net5.0",
                 "netcoreapp3.1"
             }
@@ -70,18 +71,18 @@ Task("Clean")
     )
 .Then("Restore")
     .Does<BuildData>(
-        static (context, data) => context.DotNetCoreRestore(
+        static (context, data) => context.DotNetRestore(
             data.ProjectRoot.FullPath,
-            new DotNetCoreRestoreSettings {
+            new DotNetRestoreSettings {
                 MSBuildSettings = data.MSBuildSettings
             }
         )
     )
 .Then("DPI")
     .Does<BuildData>(
-        static (context, data) => context.DotNetCoreTool(
+        static (context, data) => context.DotNetTool(
                 "tool",
-                new DotNetCoreToolSettings {
+                new DotNetToolSettings {
                     ArgumentCustomization = args => args
                                                         .Append("run")
                                                         .Append("dpi")
@@ -103,9 +104,9 @@ Task("Clean")
     )
 .Then("Build")
     .Does<BuildData>(
-        static (context, data) => context.DotNetCoreBuild(
+        static (context, data) => context.DotNetBuild(
             data.ProjectRoot.FullPath,
-            new DotNetCoreBuildSettings {
+            new DotNetBuildSettings {
                 NoRestore = true,
                 MSBuildSettings = data.MSBuildSettings
             }
@@ -116,10 +117,10 @@ Task("Clean")
         static (data, context) => data.TestTargetFrameworks,
         static (data, item, context) => {
             context.Information("Testing target framework {0}", item);
-            context.DotNetCoreRun(
+            context.DotNetRun(
                 data.TestProjectPath.FullPath,
                 "pipelines -l Warning",
-                new DotNetCoreRunSettings
+                new DotNetRunSettings
                 {
                     Configuration = data.Configuration,
                     Framework = item,
@@ -132,9 +133,9 @@ Task("Clean")
     .Default()
 .Then("Pack")
     .Does<BuildData>(
-        static (context, data) => context.DotNetCorePack(
+        static (context, data) => context.DotNetPack(
             data.ProjectRoot.FullPath,
-            new DotNetCorePackSettings {
+            new DotNetPackSettings {
                 NoBuild = true,
                 NoRestore = true,
                 OutputDirectory = data.NuGetOutputPath,
@@ -148,9 +149,9 @@ Task("Clean")
         static (data, context)
             => context.GetFiles(data.NuGetOutputPath.FullPath + "/*.nupkg"),
         static (data, item, context)
-            => context.DotNetCoreNuGetPush(
+            => context.DotNetNuGetPush(
                 item.FullPath,
-            new DotNetCoreNuGetPushSettings
+            new DotNetNuGetPushSettings
             {
                 Source = data.GitHubNuGetSource,
                 ApiKey = data.GitHubNuGetApiKey
@@ -163,9 +164,9 @@ Task("Clean")
         static (data, context)
             => context.GetFiles(data.NuGetOutputPath.FullPath + "/*.nupkg"),
         static (data, item, context)
-            => context.DotNetCoreNuGetPush(
+            => context.DotNetNuGetPush(
                 item.FullPath,
-                new DotNetCoreNuGetPushSettings
+                new DotNetNuGetPushSettings
                 {
                     Source = data.NuGetSource,
                     ApiKey = data.NuGetApiKey
