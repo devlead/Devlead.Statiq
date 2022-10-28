@@ -14,18 +14,23 @@ namespace Devlead.Statiq.Themes
         public static Bootstrapper AddThemeFromUri(this Bootstrapper bootstrapper, Uri uri)
         {
             bootstrapper
-                .ConfigureEngine(
-                    engine =>
+                .ConfigureFileSystem(
+                    (fileSystem, settings, serviceCollection) =>
                     {
 
-                        var path = engine.FileSystem.RootPath.Combine("theme").Combine(Path.GetFileNameWithoutExtension(uri.LocalPath));
+                        var path = fileSystem.RootPath.Combine("theme").Combine(Path.GetFileNameWithoutExtension(uri.LocalPath));
 
-                        var directory = engine.FileSystem.GetDirectory(path);
+                        var directory = fileSystem.GetDirectory(path);
 
                         if (!directory.Exists)
                         {
                             using var clientHandler = new HttpClientHandler();
-                            using var client = engine.CreateHttpClient(clientHandler);
+                            using var client = new HttpClient(clientHandler, false)
+                            {
+                                Timeout = TimeSpan.FromSeconds(60),
+                            };
+
+                            client.DefaultRequestHeaders.Add("User-Agent", $"Mozilla/5.0 AppleWebKit/605.1.15 Chrome/87.0.4272.0 Safari/604.1 Edg/87.0.654.0");
                             using var responseStream = client
                                 .GetStreamAsync(uri)
                                 .ConfigureAwait(false)
@@ -57,7 +62,7 @@ namespace Devlead.Statiq.Themes
                             .Select(dir => dir.Path)
                             .ToArray();
 
-                        var themeManager = engine.Services.GetRequiredService<ThemeManager>();
+                        var themeManager = serviceCollection.GetRequiredImplementationInstance<ThemeManager>();
 
                         foreach (var themePath in themePaths)
                         {
