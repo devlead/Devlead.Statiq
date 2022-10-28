@@ -55,8 +55,7 @@ Setup(
             "Devlead.Statiq.TestWeb",
             new [] {
                 "net6.0",
-                "net5.0",
-                "netcoreapp3.1"
+                "net7.0"
             }
             );
     }
