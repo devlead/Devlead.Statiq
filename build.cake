@@ -1,5 +1,5 @@
 // Install .NET Core Global tools.
-#tool "dotnet:https://api.nuget.org/v3/index.json?package=GitVersion.Tool&version=5.6.6"
+#tool dotnet:?package=GitVersion.Tool&version=5.10.3
 
 #load "build/records.cake"
 #load "build/helpers.cake"
@@ -55,8 +55,7 @@ Setup(
             "Devlead.Statiq.TestWeb",
             new [] {
                 "net6.0",
-                "net5.0",
-                "netcoreapp3.1"
+                "net7.0"
             }
             );
     }

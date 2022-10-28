@@ -21,18 +21,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install .NET Core SDK 3.1.x
+      - name: Install .NET Core SDK 6.0.x
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.x'
+          dotnet-version: '6.0.x'
 
-      - name: Install .NET Core SDK 3.0.x
+      - name: Install .NET SDK (global.json)
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.x'
-
-      - name: Install .NET Core SDK Global json
-        uses: actions/setup-dotnet@v1
+            include-prerelease: 'true'
 
       - name: Run Cake script
         env:
