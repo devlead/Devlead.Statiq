@@ -82,6 +82,7 @@ Task("Clean")
         static (context, data) => context.DotNetTool(
                 "tool",
                 new DotNetToolSettings {
+                    HandleExitCode = exitCode => true,
                     ArgumentCustomization = args => args
                                                         .Append("run")
                                                         .Append("dpi")
@@ -142,6 +143,14 @@ Task("Clean")
             }
         )
     )
+.Then("Upload-Artifacts")
+    .WithCriteria<BuildData>( (context, data) => data.ShouldPushGitHubPackages())
+    .Does<BuildData>(
+        static (context, data) => context
+            .GitHubActions()
+            .Commands
+            .UploadArtifact(data.ArtifactsPath, "artifacts")
+    )
 .Then("Push-GitHub-Packages")
     .WithCriteria<BuildData>( (context, data) => data.ShouldPushGitHubPackages())
     .DoesForEach<BuildData, FilePath>(
@@ -171,6 +180,31 @@ Task("Clean")
                     ApiKey = data.NuGetApiKey
                 }
         )
+    )
+.Then("Create-GitHub-Release")
+    .WithCriteria<BuildData>( (context, data) => data.ShouldPushNuGetPackages())
+    .Does<BuildData>(
+        static (context, data) => context
+            .Command(
+                new CommandSettings {
+                    ToolName = "GitHub CLI",
+                    ToolExecutableNames = new []{ "gh.exe", "gh" },
+                    EnvironmentVariables = { { "GH_TOKEN", data.GitHubNuGetApiKey } }
+                },
+                new ProcessArgumentBuilder()
+                    .Append("release")
+                    .Append("create")
+                    .Append(data.Version)
+                    .AppendSwitchQuoted("--title", data.Version)
+                    .Append("--generate-notes")
+                    .Append(string.Join(
+                        ' ',
+                        context
+                            .GetFiles(data.NuGetOutputPath.FullPath + "/*.nupkg")
+                            .Select(path => path.FullPath.Quote())
+                        ))
+
+            )
     )
 .Then("GitHub-Actions")
 .Run();
