@@ -44,9 +44,3 @@ jobs:
           dotnet tool restore
           echo ::endgroup::
           dotnet cake --target=GitHub-Actions
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifacts
-          path: artifacts
