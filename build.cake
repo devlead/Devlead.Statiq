@@ -82,6 +82,7 @@ Task("Clean")
         static (context, data) => context.DotNetTool(
                 "tool",
                 new DotNetToolSettings {
+                    HandleExitCode = exitCode => true,
                     ArgumentCustomization = args => args
                                                         .Append("run")
                                                         .Append("dpi")
