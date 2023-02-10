@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
     <ProjectReference Include="..\Devlead.Statiq\Devlead.Statiq.csproj" />
@@ -8,6 +8,9 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <Import Project="..\Devlead.Statiq\Devlead.Statiq.props" />
 
 </Project>

@@ -29,10 +29,13 @@ Setup(
         var artifactsPath = context
                             .MakeAbsolute(context.Directory("./artifacts"));
 
+        var projectRootPath = context
+                                .MakeAbsolute(context.Directory("src"));
+
         return new BuildData(
             version,
             isMainBranch,
-            "src",
+            projectRootPath,
             configuration,
             new DotNetMSBuildSettings()
                 .SetConfiguration(configuration)
@@ -119,13 +122,17 @@ Task("Clean")
             context.Information("Testing target framework {0}", item);
             context.DotNetRun(
                 data.TestProjectPath.FullPath,
-                "pipelines -l Warning",
                 new DotNetRunSettings
                 {
                     Configuration = data.Configuration,
                     Framework = item,
                     NoRestore = true,
-                    NoBuild = true
+                    NoBuild = true,
+                    ArgumentCustomization = args => args
+                                                .Append("--")
+                                                .AppendSwitch("-l", "Warning")
+                                                .AppendSwitchQuoted("--root", data.IntegrationTestPath.Combine(item).FullPath)
+                                                .AppendSwitchQuoted("--input",data.TestProjectPath.Combine("input").FullPath)
                 }
             );
         }

@@ -16,6 +16,7 @@ public record BuildData(
     public DirectoryPath NuGetOutputPath { get; } = OutputPath.Combine("nuget");
     public DirectoryPath BinaryOutputPath { get; } = OutputPath.Combine("bin");
     public DirectoryPath TestProjectPath { get; } = ProjectRoot.Combine(TestProjectName);
+    public DirectoryPath IntegrationTestPath { get; } = OutputPath.Combine("integrationtest");
     public string GitHubNuGetSource { get; } = System.Environment.GetEnvironmentVariable("GH_PACKAGES_NUGET_SOURCE");
     public string GitHubNuGetApiKey { get; } = System.Environment.GetEnvironmentVariable("GITHUB_TOKEN");
     public string NuGetSource { get; } = System.Environment.GetEnvironmentVariable("NUGET_SOURCE");

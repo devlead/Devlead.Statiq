@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
-    <LangVersion>9</LangVersion>
+	  <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
 
@@ -20,5 +20,11 @@
     <None Include="../devlead.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Devlead.Statiq.props" Pack="true" PackagePath="build\net6.0\Devlead.Statiq.props" />
+    <None Include="Devlead.Statiq.props" Pack="true" PackagePath="build\net7.0\Devlead.Statiq.props" />
+  </ItemGroup>
+
+  <Import Project="Devlead.Statiq.props" />
 
 </Project>
