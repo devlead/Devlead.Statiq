@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Spectre.Console.Cli;
 
+
 namespace Devlead.Statiq.Themes;
 
 public static class UriThemeExtensions
@@ -110,11 +111,13 @@ internal class FileSystemSetupCommand : Command<EmptyCommandSettings>
     public override int Execute([NotNull] CommandContext context, [NotNull] EmptyCommandSettings settings)
     {
         if (
-            context?.Remaining?.Parsed["root"].FirstOrDefault()
+            (context?.Remaining?.Parsed["root"].FirstOrDefault() ?? context?.Remaining?.Parsed["r"].FirstOrDefault())
                 is string { Length: > 0} root
-            &&
-            FileSystem.GetDirectory(root)
-                is IDirectory { Exists: true } rootDirectory
+                &&
+                new NormalizedPath(root) is { } rootPath 
+                &&
+                FileSystem.GetDirectory(rootPath.IsAbsolute ? rootPath : new NormalizedPath(Environment.CurrentDirectory).Combine(rootPath))
+                    is IDirectory { Exists: true } rootDirectory
         )
         {
             FileSystem.RootPath = rootDirectory.Path;
