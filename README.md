@@ -9,3 +9,7 @@
 ## AddThemeFromUri
 
 The `AddThemeFromUri` feature is explained in detail in blog post -  [Devlead.Statiq - Part 2 - Theme from external web resource](https://www.devlead.se/posts/2021/2021-04-10-devlead-statiq-part2-theme-from-uri)
+
+## IncludeCode
+
+The `IncludeCode` feature is explained in detail in blog post - [Devlead.Statiq - Part 3 - IncludeCode](https://www.devlead.se/posts/2021/2021-04-11-devlead-statiq-part3-includecode)
