@@ -1,4 +1,4 @@
-# Devlead.Statiq [![Build](https://github.com/devlead/Devlead.Statiq/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/devlead/Devlead.Statiq/actions/workflows/build.yml)
+# Devlead.Statiq [![Build](https://github.com/devlead/Devlead.Statiq/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/devlead/Devlead.Statiq/actions/workflows/build.yml) [![NuGet](https://img.shields.io/nuget/v/Devlead.Statiq.svg)](https://www.nuget.org/packages/Devlead.Statiq)
 
 @devlead helpers for the static site generator Statiq
 
