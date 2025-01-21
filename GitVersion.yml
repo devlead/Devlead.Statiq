@@ -2,7 +2,7 @@ next-version: 0.0.1
 branches:
   main:
     mode: ContinuousDelivery
-    label: Minor
+    label: ''
     increment: Minor
     prevent-increment:
       of-merged-branch: false
@@ -10,12 +10,7 @@ branches:
       when-current-commit-tagged: true
     track-merge-target: false
   develop:
-    regex: ^dev(elop)?(ment)?$
     mode: ContinuousDeployment
     label: alpha
     increment: Patch
-    prevent-increment:
-      of-merged-branch: false
-      when-branch-merged: false # new branch related property
-      when-current-commit-tagged: false
     track-merge-target: true

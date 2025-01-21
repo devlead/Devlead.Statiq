@@ -25,7 +25,8 @@ public record BuildData(
         ArtifactsPath,
         OutputPath
     };
-    public bool ShouldPushGitHubPackages() => !string.IsNullOrWhiteSpace(GitHubNuGetSource)
+    public bool ShouldPushGitHubPackages() => IsMainBranch &&
+                                                !string.IsNullOrWhiteSpace(GitHubNuGetSource)
                                                 && !string.IsNullOrWhiteSpace(GitHubNuGetApiKey);
     public bool ShouldPushNuGetPackages() =>    IsMainBranch &&
                                                 !string.IsNullOrWhiteSpace(NuGetSource) &&
