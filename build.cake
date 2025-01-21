@@ -16,7 +16,7 @@ Setup(
             });
 
         var gh = context.GitHubActions();
-        var version = assertedVersions.SemVer;
+        var version = assertedVersions.FullSemVer;
         var branchName = assertedVersions.BranchName;
         var isMainBranch = StringComparer.OrdinalIgnoreCase.Equals("main", branchName);
         var configuration = context.Argument("configuration", "Release");

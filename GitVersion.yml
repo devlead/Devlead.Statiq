@@ -1,7 +1,6 @@
 next-version: 0.0.1
 branches:
-  master:
-    regex: main
+  main:
     mode: ContinuousDelivery
     label:
     increment: Patch
@@ -11,6 +10,7 @@ branches:
       when-current-commit-tagged: true
     track-merge-target: false
   develop:
+    regex: ^dev(elop)?(ment)?$
     mode: ContinuousDeployment
     label: alpha
     increment: Minor
