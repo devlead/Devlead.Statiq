@@ -57,8 +57,7 @@ Setup(
             artifactsPath.Combine(version),
             "Devlead.Statiq.TestWeb",
             new [] {
-                "net6.0",
-                "net7.0"
+                "net8.0"
             }
             );
     }
