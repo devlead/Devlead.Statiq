@@ -1,5 +1,5 @@
 // Install .NET Core Global tools.
-#tool dotnet:?package=GitVersion.Tool&version=5.10.3
+#tool dotnet:?package=GitVersion.Tool&version=6.1.0
 
 #load "build/records.cake"
 #load "build/helpers.cake"
@@ -16,7 +16,7 @@ Setup(
             });
 
         var gh = context.GitHubActions();
-        var version = assertedVersions.LegacySemVerPadded;
+        var version = assertedVersions.SemVer;
         var branchName = assertedVersions.BranchName;
         var isMainBranch = StringComparer.OrdinalIgnoreCase.Equals("main", branchName);
         var configuration = context.Argument("configuration", "Release");
@@ -57,8 +57,7 @@ Setup(
             artifactsPath.Combine(version),
             "Devlead.Statiq.TestWeb",
             new [] {
-                "net6.0",
-                "net7.0"
+                "net8.0"
             }
             );
     }

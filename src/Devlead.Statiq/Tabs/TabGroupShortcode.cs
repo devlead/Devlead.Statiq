@@ -19,7 +19,7 @@ public class TabGroupShortcode : SyncShortcode
         var contentBuilder = new StringBuilder();
 
         var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
-            .WithNamingConvention(new YamlDotNet.Serialization.NamingConventions.CamelCaseNamingConvention())
+            .WithNamingConvention(YamlDotNet.Serialization.NamingConventions.CamelCaseNamingConvention.Instance)
             .Build();
 
         var tabGroup = deserializer.Deserialize<TabGroup>(content);
