@@ -2,8 +2,8 @@ next-version: 0.0.1
 branches:
   main:
     mode: ContinuousDelivery
-    label:
-    increment: Patch
+    label: Minor
+    increment: Minor
     prevent-increment:
       of-merged-branch: false
       when-branch-merged: true # new branch related property
@@ -13,7 +13,7 @@ branches:
     regex: ^dev(elop)?(ment)?$
     mode: ContinuousDeployment
     label: alpha
-    increment: Minor
+    increment: Patch
     prevent-increment:
       of-merged-branch: false
       when-branch-merged: false # new branch related property
