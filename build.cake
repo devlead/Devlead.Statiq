@@ -1,5 +1,5 @@
 // Install .NET Core Global tools.
-#tool dotnet:?package=GitVersion.Tool&version=6.6.1
+#tool dotnet:?package=GitVersion.Tool&version=6.6.2
 
 #load "build/records.cake"
 #load "build/helpers.cake"
