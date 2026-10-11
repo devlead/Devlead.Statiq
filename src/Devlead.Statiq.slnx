@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Devlead.Statiq/Devlead.Statiq.csproj" />
+  <Project Path="Devlead.Statiq.TestWeb/Devlead.Statiq.TestWeb.csproj" />
+</Solution>
