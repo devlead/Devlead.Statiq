@@ -7,7 +7,7 @@
  *****************************/
 Setup<BuildData>(
     static context => {
-        InstallTool("dotnet:https://api.nuget.org/v3/index.json?package=DPI&version=2026.10.15.520");
+        InstallTool("dotnet:https://api.nuget.org/v3/index.json?package=DPI&version=2026.10.26.544");
         InstallTool("dotnet:https://api.nuget.org/v3/index.json?package=GitVersion.Tool&version=6.8.2");
 
         var assertedVersions = context.GitVersion(new GitVersionSettings
@@ -117,11 +117,7 @@ Task("DPI")
                 .Append("--silent")
                 .AppendSwitchQuoted("--output", "table")
                 .Append(
-                    (
-                        !string.IsNullOrWhiteSpace(context.EnvironmentVariable("NuGetReportSettings_SharedKey"))
-                        &&
-                        !string.IsNullOrWhiteSpace(context.EnvironmentVariable("NuGetReportSettings_WorkspaceId"))
-                    )
+                    data.ShouldReportDPI()
                         ? "report"
                         : "analyze"
                     )
